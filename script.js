@@ -1,8 +1,6 @@
 // Author: Lachlan Daly
 // Date: 14/08/2021
-const KNOCK = "Knock, Knock";;
-const WHO = "Who's there?";
-const name = [
+const names = [
     "Nobel", 
     "Tank",
     "Luke",
@@ -20,7 +18,7 @@ const name = [
     "Woo"
 ];
 
-const punchline = [
+const punchlines = [
     "Nobel... that's why I knocked.", 
     "You're welcome.",
     "Luke through the peep hole and find out.",
@@ -39,37 +37,36 @@ const punchline = [
 ];
 
 
-// Function to generate the first randomised line of the message
-generateFirstLine = () => {
-    return 'first line';
+// Function takes an array and boolean and returns an
+// introduction to a knock knock jokes
+// Expects an array of names without punctuation either side
+generateIntroduction = (names) => {
+    let introduction = "Knock Knock\nWho's there?\n";
+    const randNum1 = generateRandomNumber(names.length);
+    const randNum2 = generateRandomNumber(names.length);
+    introduction += `${names[randNum1]}.\n${names[randNum2]} who?\n`;
+    return introduction;
 }
-
 
 // returns name with who? tacked onto the end
-generateSecondLine = () => {
-    return 'second line';
+generatePunchline = (punchlines) => {
+    const randNum = generateRandomNumber(punchlines.length);
+    let punchline = punchlines[randNum];
+    return punchline;
 }
-
-
-// Function to generate the third randomised line of the message
-generateThirdLine = () => {
-    return 'third line';
-}
-
 
 // Function to generate a random integer between min and max
-generateRandomNumber = (min, max) => {
-    return 1;
+generateRandomNumber = (num) => {
+    return Math.floor(Math.random() * num);
 }
 
 
 // This function uses helper functions to grab and display
 // all three randomised sentences.
 displayMessage = () => {
-    const firstMessage = generateFirstLine();
-    const secondMessage = generateSecondLine();
-    const thirdMessage = generateThirdLine();
-    const completeMessage = `${firstMessage} ${secondMessage} ${thirdMessage}`
+    const introduction = generateIntroduction(names);
+    const punchline = generatePunchline(punchlines);
+    const completeMessage = `${introduction}${punchline}`
     console.log(completeMessage);
 }
 
